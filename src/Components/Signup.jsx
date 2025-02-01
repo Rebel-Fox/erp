@@ -36,7 +36,7 @@ function Signup() {
       setError(error.message);
       console.error("Signup Error:", error.message);
     } finally {
-      setLoading(false);
+      // setLoading(false);
     }
   };
 
