@@ -9,12 +9,12 @@ function Signup() {
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("student"); // Default role
   const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
   const navigate = useNavigate(); // Hook to navigate to different routes
 
   const handleSignup = async (e) => {
     e.preventDefault();
-    setLoading(true);
+    // setLoading(true);
     setError(null);
 
     try {
@@ -29,10 +29,9 @@ function Signup() {
       });
 
       // 🔹 Step 3: Redirect to login page
-      setTimeout(() => {
-        navigate("/login", { replace: true });
-        window.location.reload()
-      }, 500); // 500ms delay before redirecting
+      navigate("/login", { replace: true });
+      window.location.reload()
+
     } catch (error) {
       setError(error.message);
       console.error("Signup Error:", error.message);
@@ -88,9 +87,8 @@ function Signup() {
           <button
             type="submit"
             className="w-full py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:bg-gray-400"
-            disabled={loading}
           >
-            {loading ? "Signing up..." : "Sign Up"}
+            "Sign Up"
           </button>
         </form>
 
