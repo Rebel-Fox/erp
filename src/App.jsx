@@ -51,7 +51,7 @@ export default function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <>
-        <Route path="/" element={<Navigate replace to="/login" />} />
+        <Route path="/" element={<Navigate to="/login" />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/student-dashboard" element={<ProtectedRoute element={<StudentDashboard />} requiredRole="student" />} />
@@ -59,8 +59,7 @@ export default function App() {
         <Route path="/admin-dashboard" element={<ProtectedRoute element={<AdminDashboard />} requiredRole="admin" />} />
         <Route path="*" element={<NotFound />} />
       </>
-    ),
-    { basename: process.env.PUBLIC_URL || "/" } // Fixes routing issues
+    )
   );
   
 
