@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { fireBaseAuth, db } from "../firebase-config";
 import { doc, setDoc } from "firebase/firestore";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 function Signup() {
   const [email, setEmail] = useState("");
@@ -29,7 +29,7 @@ function Signup() {
       });
 
       // 🔹 Step 3: Redirect to login page
-      navigate(`/${role}-dashboard`);
+      navigate('/login');
 
     } catch (error) {
       setError(error.message);
@@ -94,9 +94,9 @@ function Signup() {
 
         <div className="mt-4 text-center">
           <span>Already have an account? </span>
-          <a href="/login" className="text-blue-600 hover:underline">
+          <NavLink href="/login" className="text-blue-600 hover:underline">
             Login
-          </a>
+          </NavLink>
         </div>
       </div>
     </div>
