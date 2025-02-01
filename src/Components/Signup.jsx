@@ -30,6 +30,7 @@ function Signup() {
 
       // 🔹 Step 3: Redirect to login page
       navigate("/login", { replace: true }); // Ensure navigation works without refresh
+      window.location.reload()
     } catch (error) {
       setError(error.message);
       console.error("Signup Error:", error.message);
