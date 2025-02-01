@@ -30,6 +30,8 @@ function Signup() {
 
       // 🔹 Step 3: Redirect to login page
       navigate('/login');
+      console.log("Redirecting to login...");
+
 
     } catch (error) {
       setError(error.message);
