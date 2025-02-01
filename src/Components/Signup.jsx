@@ -2,45 +2,42 @@ import React, { useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { fireBaseAuth, db } from "../firebase-config";
 import { doc, setDoc } from "firebase/firestore";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, Navigate } from "react-router-dom";
 
 function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("student"); // Default role
   const [error, setError] = useState(null);
-  // const [loading, setLoading] = useState(false);
-  const navigate = useNavigate(); // Hook to navigate to different routes
+  const [redirect, setRedirect] = useState(false); // Track redirect state
 
   const handleSignup = async (e) => {
     e.preventDefault();
-    // setLoading(true);
     setError(null);
 
     try {
-      // 🔹 Step 1: Create user with Firebase Auth
+      console.log("Signing up...");
       const userCredential = await createUserWithEmailAndPassword(fireBaseAuth, email, password);
       const user = userCredential.user;
+      console.log("User created:", user.uid);
 
-      // 🔹 Step 2: Store user details in Firestore
       await setDoc(doc(db, "users", user.uid), {
         email: user.email,
         role: role, // Store selected role
       });
+      console.log("User data saved in Firestore");
 
-      // 🔹 Step 3: Redirect to login page
-      navigate('/login');
-      console.log("Redirecting to login...");
-
-
+      setRedirect(true); // Trigger redirect
     } catch (error) {
       setError(error.message);
       console.error("Signup Error:", error.message);
-    } 
-    // finally {
-      // setLoading(false);
-    // }
+    }
   };
+
+  // 🔹 Redirect user if signup was successful
+  if (redirect) {
+    return <Navigate to="/login" replace />;
+  }
 
   return (
     <div className="min-h-screen flex justify-center items-center bg-gray-100">
@@ -90,7 +87,7 @@ function Signup() {
             type="submit"
             className="w-full py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:bg-gray-400"
           >
-            "Sign Up"
+            Sign Up
           </button>
         </form>
 
