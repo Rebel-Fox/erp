@@ -57,7 +57,7 @@ export default function App() {
         <Route path="/student-dashboard" element={<ProtectedRoute element={<StudentDashboard />} requiredRole="student" />} />
         <Route path="/faculty-dashboard" element={<ProtectedRoute element={<FacultyDashboard />} requiredRole="faculty" />} />
         <Route path="/admin-dashboard" element={<ProtectedRoute element={<AdminDashboard />} requiredRole="admin" />} />
-        <Route path="*" element={<NotFound />} />
+        {/* <Route path="*" element={<NotFound />} /> */}
       </>
     )
   );

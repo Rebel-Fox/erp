@@ -29,8 +29,10 @@ function Signup() {
       });
 
       // 🔹 Step 3: Redirect to login page
-      navigate("/login", { replace: true }); // Ensure navigation works without refresh
-      window.location.reload()
+      setTimeout(() => {
+        navigate("/login", { replace: true });
+        window.location.reload()
+      }, 500); // 500ms delay before redirecting
     } catch (error) {
       setError(error.message);
       console.error("Signup Error:", error.message);
