@@ -29,15 +29,15 @@ function Signup() {
       });
 
       // 🔹 Step 3: Redirect to login page
-      navigate("/login", { replace: true });
-      window.location.reload()
+      navigate(`/${role}-dashboard`);
 
     } catch (error) {
       setError(error.message);
       console.error("Signup Error:", error.message);
-    } finally {
+    } 
+    // finally {
       // setLoading(false);
-    }
+    // }
   };
 
   return (
