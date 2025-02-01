@@ -94,7 +94,7 @@ function Signup() {
 
         <div className="mt-4 text-center">
           <span>Already have an account? </span>
-          <NavLink href="/login" className="text-blue-600 hover:underline">
+          <NavLink to="/login" className="text-blue-600 hover:underline">
             Login
           </NavLink>
         </div>
