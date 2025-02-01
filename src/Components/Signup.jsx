@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { fireBaseAuth, db } from "../firebase-config";
 import { doc, setDoc } from "firebase/firestore";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Signup() {
   const [email, setEmail] = useState("");
@@ -29,7 +29,10 @@ function Signup() {
       });
 
       // 🔹 Step 3: Redirect to login page
-     <Navigate to="/login" />
+      setTimeout(() => {
+        navigate("/login", { replace: true });
+        window.location.reload()
+      }, 500); // 500ms delay before redirecting
     } catch (error) {
       setError(error.message);
       console.error("Signup Error:", error.message);
